@@ -53,3 +53,34 @@ def add_expense(amount_str, category, note):
     data["expenses"].append({"amount": amount, "category": category, "note": note})
     save_data(data)
     print(f"Расход добавлен: {amount:.2f} руб. [{category}] {note}")
+
+
+def show_list(cat_filter=None):
+    data = load_data()
+    expenses = data["expenses"]
+
+    if not expenses:
+        print("Расходов пока нет.")
+        return
+
+    filtered = [e for e in expenses if not cat_filter or e["category"] == cat_filter]
+
+    if not filtered:
+        print(f"Нет расходов в категории '{cat_filter}'.")
+        return
+
+    print(f"{'Сумма':<10} {'Категория':<12} {'Название'}")
+    print("-" * 36)
+
+    for e in filtered:
+        print(f"{e['amount']:<10.2f} {e['category']:<12} {e['note']}")
+
+
+def show_sum(cat_filter=None):
+    data = load_data()
+    total = sum(e["amount"] for e in data["expenses"] if not cat_filter or e["category"] == cat_filter)
+
+    if cat_filter:
+        print(f"Сумма по категории '{cat_filter}': {total:.2f} руб.")
+    else:
+        print(f"Общая сумма расходов: {total:.2f} руб.")
