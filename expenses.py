@@ -83,4 +83,26 @@ def show_sum(cat_filter=None):
     if cat_filter:
         print(f"Сумма по категории '{cat_filter}': {total:.2f} руб.")
     else:
-        print(f"Общая сумма расходов: {total:.2f} руб.")
+        print(f"Общая сумма расходов: {total:.2f} руб.") 
+
+
+        if __name__ == "__main__":
+            args = sys.argv
+
+    if len(args) < 2:
+        print("Ошибка: не указана команда.")
+        sys.exit(1)
+
+    if args[1] == "add-category":
+        if len(args) != 3:
+            print("Ошибка: укажите название категории.")
+            sys.exit(1)
+        add_category(args[2])
+
+    else:
+        if args[1] == "add":
+            if len(args) != 5:
+                print("Ошибка: формат команды add <сумма> <категория> <название>")
+                sys.exit(1)
+            add_expense(args[2], args[3], args[4])
+
