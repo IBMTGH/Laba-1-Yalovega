@@ -106,3 +106,21 @@ def show_sum(cat_filter=None):
                 sys.exit(1)
             add_expense(args[2], args[3], args[4])
 
+        else:
+            if args[1] == "list":
+                if len(args) > 3:
+                    print("Ошибка: слишком много аргументов для list.")
+                    sys.exit(1)
+                show_list(args[2] if len(args) == 3 else None)
+
+            else:
+                if args[1] == "sum":
+                    if len(args) > 3:
+                        print("Ошибка: слишком много аргументов для sum.")
+                        sys.exit(1)
+                    show_sum(args[2] if len(args) == 3 else None)
+
+                else:
+                    print(f"Ошибка: неизвестная команда '{args[1]}'.")
+                    sys.exit(1)
+
