@@ -123,4 +123,3 @@ def show_sum(cat_filter=None):
                 else:
                     print(f"Ошибка: неизвестная команда '{args[1]}'.")
                     sys.exit(1)
-
