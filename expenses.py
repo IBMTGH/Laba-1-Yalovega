@@ -5,6 +5,8 @@ import os
 DATA_FILE = "expenses.json"
 
 
+
+
 def load_data():
     if not os.path.exists(DATA_FILE):
         return {"categories": [], "expenses": []}
@@ -22,6 +24,10 @@ def load_data():
 def save_data(data):
     with open(DATA_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
+
+
+
+
 
 
 def add_category():
@@ -72,6 +78,9 @@ def add_expense():
     print(f"Расход добавлен: {amount:.2f} руб. [{category}] {note}")
 
 
+
+
+
 def show_list():
     data = load_data()
     expenses = data["expenses"]
@@ -110,6 +119,10 @@ def show_sum():
     else:
         print(f"Общая сумма расходов: {total:.2f} руб.")
 
+
+
+
+
 if __name__ == "__main__":
     while True:
         print("\n1. Добавить расход")
@@ -142,4 +155,3 @@ if __name__ == "__main__":
 
                         else:
                             print("Ошибка: введите число от 0 до 4.")
-                            
